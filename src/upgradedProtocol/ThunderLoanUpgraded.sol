@@ -141,7 +141,7 @@ contract ThunderLoanUpgraded is Initializable, OwnableUpgradeable, UUPSUpgradeab
         __Ownable_init(msg.sender);
         __UUPSUpgradeable_init();
         __Oracle_init(tswapAddress);
-        s_flashLoanFee = 3e15; // 0.3% ETH fee
+        s_flashLoanFee = 3e15; // 0.3% ETH fee // make it immutable
     }
 
     function deposit(IERC20 token, uint256 amount) external revertIfZero(amount) revertIfNotAllowedToken(token) {

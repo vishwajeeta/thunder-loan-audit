@@ -73,6 +73,8 @@ import { UUPSUpgradeable } from "@openzeppelin/contracts-upgradeable/proxy/utils
 import { OracleUpgradeable } from "./OracleUpgradeable.sol";
 import { Address } from "@openzeppelin/contracts/utils/Address.sol";
 import { IFlashLoanReceiver } from "../interfaces/IFlashLoanReceiver.sol";
+// should implement this interface
+// import {IThunderLoan} from "../interfaces/IThunderLoan.sol";
 
 contract ThunderLoan is Initializable, OwnableUpgradeable, UUPSUpgradeable, OracleUpgradeable {
     error ThunderLoan__NotAllowedToken(IERC20 token);
@@ -141,8 +143,8 @@ contract ThunderLoan is Initializable, OwnableUpgradeable, UUPSUpgradeable, Orac
         __Ownable_init(msg.sender);
         __UUPSUpgradeable_init();
         __Oracle_init(tswapAddress);
-        s_feePrecision = 1e18;
-        s_flashLoanFee = 3e15; // 0.3% ETH fee
+        s_feePrecision = 1e18; // make it immutable
+        s_flashLoanFee = 3e15; // 0.3% ETH fee // make it immutable
     }
 
     function deposit(IERC20 token, uint256 amount) external revertIfZero(amount) revertIfNotAllowedToken(token) {
